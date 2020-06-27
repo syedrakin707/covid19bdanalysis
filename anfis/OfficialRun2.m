@@ -182,51 +182,63 @@ figure
 subplot(3,2,1)
 [x,mf1] = plotmf(fis,'input',1);
 plot(x,mf1)
+legend('mf1.1', 'mf1.2', 'mf1.3','mf1.4')
 
 subplot(3,2,2)
 [x,mf2] = plotmf(fis2,'input',1);
 plot(x,mf2)
+legend('mf2.1', 'mf2.2', 'mf2.3','mf2.4')
 
 subplot(3,2,3)
 [x,mf3] = plotmf(fis3,'input',1);
 plot(x,mf3)
+legend('mf3.1', 'mf3.2')
 
 subplot(3,2,4)
 [x,mf4] = plotmf(fis4,'input',1);
 plot(x,mf4)
+legend('mf4.1', 'mf4.2')
 
 subplot(3,2,5)
 [x,mf5] = plotmf(fis5,'input',1);
 plot(x,mf5)
+legend('mf5.1', 'mf5.2', 'mf5.3')
 
 subplot(3,2,6)
 [x,mf6] = plotmf(fis6,'input',1);
 plot(x,mf6)
+legend('mf6.1', 'mf6.2')
 
 figure
 subplot(3,2,1)
 [x,mf7] = plotmf(fis7,'input',1);
 plot(x,mf7)
+legend('mf7.1', 'mf7.2', 'mf7.3')
 
 subplot(3,2,2)
 [x,mf8] = plotmf(fis8,'input',1);
 plot(x,mf8)
+legend('mf8.1', 'mf8.2', 'mf8.3','mf8.4')
 
 subplot(3,2,3)
 [x,mf9] = plotmf(fis9,'input',1);
 plot(x,mf9)
+legend('mf9.1', 'mf9.2', 'mf9.3')
 
 subplot(3,2,4)
 [x,mf10] = plotmf(fis10,'input',1);
 plot(x,mf10)
+legend('mf10.1', 'mf10.2', 'mf10.3')
 
 subplot(3,2,5)
 [x,mf11] = plotmf(fis11,'input',1);
 plot(x,mf11)
+legend('mf11.1', 'mf11.2')
 
 subplot(3,2,6)
 [x,mf12] = plotmf(fis12,'input',1);
 plot(x,mf12)
+legend('mf12.1', 'mf12.2')
 
 %%Plots of Input Membership Functions end here
 %%Plots of Output Surfaces start here
@@ -234,41 +246,53 @@ plot(x,mf12)
 figure
 subplot(3,2,1)
 gensurf(fis);
+legend('Surface Plot - Cummulative Cases','Location','northwest')
 
 subplot(3,2,2)
 gensurf(fis2);
+legend('Surface Plot - Cummulative Deaths','Location','northwest')
 
 subplot(3,2,3)
 gensurf(fis3);
+legend('Surface Plot - % Change in Cummulative Cases','Location','southwest')
 
 subplot(3,2,4)
 gensurf(fis4);
+legend('Surface Plot - % Change in Cummulative Deaths','Location','southeast')
 
 subplot(3,2,5)
 gensurf(fis5);
+legend('Surface Plot - Cummulative Recoveries','Location','northwest')
 
 subplot(3,2,6)
 gensurf(fis6);
+legend('Surface Plot - % Change in Cummulative Recoveries','Location','southwest')
 
 %%Part 2
 figure
 subplot(3,2,1)
 gensurf(fis7);
+legend('Surface Plot - Daily Cases','Location','northwest')
 
 subplot(3,2,2)
 gensurf(fis8);
+legend('Surface Plot - % Change in Daily Cases','Location','northeast')
 
 subplot(3,2,3)
 gensurf(fis9);
+legend('Surface Plot - Daily Deaths','Location','northwest')
 
 subplot(3,2,4)
 gensurf(fis10);
+legend('Surface Plot - % Change in Daily Deaths','Location','northeast')
 
 subplot(3,2,5)
 gensurf(fis11);
+legend('Surface Plot - Daily Recoveries','Location','northwest')
 
 subplot(3,2,6)
-gensurf(fis12);;
+gensurf(fis12);
+legend('Surface Plot - % Change in Daily Recoveries','Location','northwest')
 
 %%Plots of Output Surfaces end here
 
@@ -286,6 +310,7 @@ hold on
 plot(days_train,cases_cf_train,'--b')
 hold on
 plot(days_test, cases_cf_test, '+b')
+legend("Predicted Cumulative Cases","Trained Cumulative Cases","Actual Cumulative Cases", "location", "northwest")
 hold off
 
 cases_cf_fc_error = abs(cases_cf_test - anfisoutput);
@@ -293,8 +318,8 @@ cases_cf_fc_error = abs(cases_cf_test - anfisoutput);
 subplot(2,2,2);
 plot(days_test,cases_cf_fc_error, '--r')
 xlabel("Days")
-ylabel("Error(Forcasted Number of Cumulative Cases)")
-
+ylabel("Error(Forcasted Cumulative Cases)")
+legend("Error(Forcasted Cumulative Cases)", "location", "northwest")
 
 subplot(2,2,3)
 anfisoutput1b = evalfis(days_train,fis);
@@ -303,6 +328,7 @@ xlabel("Days")
 ylabel("Number of Cumulative Cases")
 hold on
 plot(days_train,cases_cf_train,'--b')
+legend("ANFIS Results (Cumulative Cases)","Trained Cumulative Cases", "location", "northwest")
 hold off
 
 error1 = abs(cases_cf_train-anfisoutput1b);
@@ -310,7 +336,8 @@ error1 = abs(cases_cf_train-anfisoutput1b);
 subplot(2,2,4)
 plot(days_train,error1, '--r')
 xlabel("Days")
-ylabel("Error(Trained Number of Cumulative Cases)")
+ylabel("Error(Trained Cumulative Cases)")
+legend("Error(Trained Cumulative Cases)", "location", "northwest")
 
 mae_cases_cf_tnt = mae(error1);
 mape_cases_cf_tnt = mae_cases_cf_tnt*100;
@@ -336,6 +363,7 @@ hold on
 plot(days_train,deaths_cf_train,'--b')
 hold on
 plot(days_test, deaths_cf_test, '+b')
+legend("Predicted Cumulative Deaths","Trained Cumulative Deaths","Actual Cumulative Deaths", "location", "northwest")
 hold off
 
 deaths_cf_fc_error = deaths_cf_test - anfisoutput2;
@@ -343,8 +371,8 @@ deaths_cf_fc_error = deaths_cf_test - anfisoutput2;
 subplot(2,2,2);
 plot(days_test,deaths_cf_fc_error, '--r')
 xlabel("Days")
-ylabel("Error(Forcasted Number of Cumulative Deaths)")
-
+ylabel("Error(Forcasted Cumulative Deaths)")
+legend("Error(Forcasted Cumulative Deaths)", "location", "northwest")
 
 subplot(2,2,3)
 anfisoutput2b = evalfis(days_train,fis2);
@@ -353,6 +381,7 @@ xlabel("Days")
 ylabel("Number of Cumulative Deaths")
 hold on
 plot(days_train,deaths_cf_train,'--b')
+legend("ANFIS Results (Cumulative Deaths)","Trained Cumulative Deaths", "location", "northwest")
 hold off
 
 error2 = abs(deaths_cf_train-anfisoutput2b);
@@ -360,7 +389,8 @@ error2 = abs(deaths_cf_train-anfisoutput2b);
 subplot(2,2,4)
 plot(days_train,error2, '--r')
 xlabel("Days")
-ylabel("Error(Trained Number of Cumulative Deaths)")
+ylabel("Error(Trained Cumulative Deaths)")
+legend("Error(Trained Cumulative Deaths)", "location", "northwest")
 
 mae_deaths_cf_tnt = mae(error2);
 mape_deaths_cf_tnt = mae_deaths_cf_tnt*100;
@@ -381,11 +411,12 @@ anfisoutput3 = evalfis(days_test,fis3);
 anfisoutputchk3 = evalfis(days_test,chkfis3);
 plot(days_test,anfisoutput3, '*r')
 xlabel("Days")
-ylabel("% Increase in Cumulative Cases")
+ylabel("% Change in Cumulative Cases")
 hold on
 plot(days_train,cases_cf_increment_train,'--b')
 hold on
 plot(days_test, cases_cf_increment_test, '+b')
+legend("Predicted % Change in Cumulative Cases","Trained % Change in Cumulative Cases","Actual % Change in Cumulative Cases", "location", "northwest")
 hold off
 
 cases_cf_increment_fc_error = cases_cf_increment_test - anfisoutput3;
@@ -393,8 +424,8 @@ cases_cf_increment_fc_error = cases_cf_increment_test - anfisoutput3;
 subplot(2,2,2);
 plot(days_test,cases_cf_increment_fc_error, '--r')
 xlabel("Days")
-ylabel("Error(Forcasted % Increase in Cumulative Cases)")
-
+ylabel("Error(Forecasted % Change in Cumulative Cases)")
+legend("Error(Forecasted % Change in Cumulative Cases)", "location", "northwest")
 
 subplot(2,2,3)
 anfisoutput3b = evalfis(days_train,fis3);
@@ -403,6 +434,7 @@ xlabel("Days")
 ylabel("% Increase in Cumulative Cases")
 hold on
 plot(days_train,cases_cf_increment_train,'--b')
+legend("ANFIS Results (% Change in Cumulative Cases)","Trained % Change in Cumulative Cases", "location", "northwest")
 hold off
 
 error3 = abs(cases_cf_increment_train-anfisoutput3b);
@@ -410,7 +442,8 @@ error3 = abs(cases_cf_increment_train-anfisoutput3b);
 subplot(2,2,4)
 plot(days_train,error3, '--r')
 xlabel("Days")
-ylabel("Error(Trained % Increase in Cumulative Cases)")
+ylabel("Error(Trained % Change in Cumulative Cases)")
+legend("Error(Trained % Change in Cumulative Cases)", "location", "northwest")
 
 mae_cases_cf_increment_tnt = mae(error3);
 mape_cases_cf_increment_tnt = mae_cases_cf_increment_tnt*100;
@@ -431,11 +464,12 @@ anfisoutput4 = evalfis(days_test,fis4);
 anfisoutputchk4 = evalfis(days_test,chkfis4);
 plot(days_test,anfisoutput4, '*r')
 xlabel("Days")
-ylabel("% Increase in Cumulative Deaths")
+ylabel("% Change in Cumulative Deaths")
 hold on
 plot(days_train,deaths_cf_increment_train,'--b')
 hold on
 plot(days_test, deaths_cf_increment_test, '+b')
+legend("Predicted % Change in Cumulative Deaths","Trained % Change in Cumulative Deaths","Actual % Change in Cumulative Deaths", "location", "northwest")
 hold off
 
 deaths_cf_increment_fc_error = deaths_cf_increment_test - anfisoutput4;
@@ -443,16 +477,17 @@ deaths_cf_increment_fc_error = deaths_cf_increment_test - anfisoutput4;
 subplot(2,2,2);
 plot(days_test,deaths_cf_increment_fc_error, '--r')
 xlabel("Days")
-ylabel("Error(Forcasted % Increase in Cumulative Deaths)")
-
+ylabel("Error(Forecasted % Change in Cumulative Deaths)")
+legend("Error(Forecasted % Change in Cumulative Deaths)", "location", "northwest")
 
 subplot(2,2,3)
 anfisoutput4b = evalfis(days_train,fis4);
 plot(days_train,anfisoutput4b, '+r')
 xlabel("Days")
-ylabel("% Increase in Cumulative Deaths")
+ylabel("% Change in Cumulative Deaths")
 hold on
 plot(days_train,deaths_cf_increment_train,'--b')
+legend("ANFIS Results (% Change in Cumulative Deaths)","Trained % Change in Cumulative Deaths", "location", "northwest")
 hold off
 
 error4 = abs(deaths_cf_increment_train-anfisoutput4b);
@@ -460,7 +495,8 @@ error4 = abs(deaths_cf_increment_train-anfisoutput4b);
 subplot(2,2,4)
 plot(days_train,error4, '--r')
 xlabel("Days")
-ylabel("Error(Trained % Increase in Cumulative Deaths)")
+ylabel("Error(Trained % Change in Cumulative Deaths)")
+legend("Error(Trained % Change in Cumulative Deaths)", "location", "northwest")
 
 mae_deaths_cf_increment_tnt = mae(error4);
 mape_deaths_cf_increment_tnt = mae_deaths_cf_increment_tnt*100;
@@ -481,11 +517,12 @@ anfisoutput5 = evalfis(days_test,fis5);
 anfisoutputchk5 = evalfis(days_test,chkfis5);
 plot(days_test,anfisoutput5, '*r')
 xlabel("Days")
-ylabel("Number of Cumulative Cured Cases")
+ylabel("Number of Cumulative Recoveries")
 hold on
 plot(days_train,cured_cf_train,'--b')
 hold on
 plot(days_test, cured_cf_test, '+b')
+legend("Predicted Cumulative Recoveriess","Trained Cumulative Recoveries","Actual Cumulative Recoveries", "location", "northwest")
 hold off
 
 cured_fc_error = abs(cured_cf_test - anfisoutput5);
@@ -493,16 +530,17 @@ cured_fc_error = abs(cured_cf_test - anfisoutput5);
 subplot(2,2,2);
 plot(days_test,cured_fc_error, '--r')
 xlabel("Days")
-ylabel("Error(Forcasted Number of Cumulative Cured Cases)")
-
+ylabel("Error(Forecasted Cumulative Recoveries)")
+legend("Error(Forecasted Cumulative Recoveries)", "location", "northwest")
 
 subplot(2,2,3)
 anfisoutput5b = evalfis(days_train,fis5);
 plot(days_train,anfisoutput5b, '+r')
 xlabel("Days")
-ylabel("Number of Cumulative Cured Cases")
+ylabel("Number of Cumulative Recoveries")
 hold on
 plot(days_train,cured_cf_train,'--b')
+legend("ANFIS Results (Cumulative Recoveries)","Trained Cumulative Recoveries", "location", "northwest")
 hold off
 
 error5 = abs(cured_cf_train-anfisoutput5b);
@@ -510,7 +548,8 @@ error5 = abs(cured_cf_train-anfisoutput5b);
 subplot(2,2,4)
 plot(days_train,error5, '--r')
 xlabel("Days")
-ylabel("Error(Trained Number of Cumulative Cured Cases)")
+ylabel("Error(Trained Cumulative Recoveries)")
+legend("Error(Trained Cumulative Recoveries)", "location", "northwest")
 
 mae_cured_cf_tnt = mae(error1);
 mape_cured_cf_tnt = mae_cured_cf_tnt*100;
@@ -531,11 +570,12 @@ anfisoutput6 = evalfis(days_test,fis6);
 anfisoutputchk6 = evalfis(days_test,chkfis6);
 plot(days_test,anfisoutput6, '*r')
 xlabel("Days")
-ylabel("% Increase in Cumulative Cured Cases")
+ylabel("% Change in Cumulative Recoveries")
 hold on
 plot(days_train,cured_cf_increment_train,'--b')
 hold on
 plot(days_test, cured_cf_increment_test, '+b')
+legend("Predicted % Change in Cumulative Recoveries","Trained % Change in Cumulative Recoveries","Actual % Change in Cumulative Recoveries", "location", "northwest")
 hold off
 
 cured_cf_increment_fc_error = cured_cf_increment_test - anfisoutput2;
@@ -543,16 +583,17 @@ cured_cf_increment_fc_error = cured_cf_increment_test - anfisoutput2;
 subplot(2,2,2);
 plot(days_test,cured_cf_increment_fc_error, '--r')
 xlabel("Days")
-ylabel("Error(Forcasted % Increase in Cumulative Cured Cases)")
-
+ylabel("Error(Forcasted % Change in Cumulative Recoveries)")
+legend("Error(Forcasted % Change in Cumulative Recoveries)", "location", "northwest")
 
 subplot(2,2,3)
 anfisoutput6b = evalfis(days_train,fis6);
 plot(days_train,anfisoutput6b, '+r')
 xlabel("Days")
-ylabel("% Increase in Cumulative Cured Cases")
+ylabel("% Change in Cumulative Cured Cases")
 hold on
 plot(days_train,cured_cf_increment_train,'--b')
+legend("ANFIS Results (% Change in Cumulative Recoveries)","Trained % Change in Cumulative Recoveries", "location", "northwest")
 hold off
 
 error6 = abs(cured_cf_increment_train-anfisoutput6b);
@@ -560,7 +601,8 @@ error6 = abs(cured_cf_increment_train-anfisoutput6b);
 subplot(2,2,4)
 plot(days_train,error2, '--r')
 xlabel("Days")
-ylabel("Error(Trained % Increase in Cumulative Cured Cases)")
+ylabel("Error(Trained % Change in Cumulative Recoveries)")
+legend("Error(Trained % Change in Cumulative Recoveries)", "location", "northwest")
 
 mae_cured_cf_increment_tnt = mae(error2);
 mape_cured_cf_increment_tnt = mae_cured_cf_increment_tnt*100;
